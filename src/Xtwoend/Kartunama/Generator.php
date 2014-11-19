@@ -34,7 +34,7 @@ class Generator {
 	 */	
 	public function __construct()
 	{
-		$this->intervention = new ImageManager(array('driver' => 'imagick'));
+		$this->intervention = new ImageManager();
 		$this->file 		= new Filesystem;
 	}
 
@@ -58,37 +58,37 @@ class Generator {
 
 		$img 	= $this->intervention->make($baseimage);
 		$foto 	= $this->intervention->make($foto);
-		$foto->resize(190, null, function ($constraint) {
+		$foto->resize(110, null, function ($constraint) {
 		    $constraint->aspectRatio();
 		});
-		$foto->crop(190,210, 0, 0);
+		$foto->crop(110,110, 0, 0);
 		// write text
 		// use callback to define details
-		$img->text($name, 400, 305, function($font) {
+		$img->text($name, 230, 155, function($font) {
 		    $font->file(__DIR__ . '/fonts/Arimo-Bold.ttf');
-		    $font->size(60);
+		    $font->size(21);
 		    $font->color('#414141');
 		    $font->align('left');
 		    $font->valign('center');
 		});
 
-		$img->text($jobtitle, 400, 360, function($font) {
+		$img->text($jobtitle, 230, 185, function($font) {
 		    $font->file(__DIR__ . '/fonts/Arimo-Regular.ttf');
-		    $font->size(38);
+		    $font->size(18);
 		    $font->color('#595959');
 		    $font->align('left');
 		    $font->valign('center');
 		});
 
-		$img->text($city, 400, 400, function($font) {
+		$img->text($city, 230, 215, function($font) {
 		    $font->file(__DIR__ . '/fonts/Arimo-Bold.ttf');
-		    $font->size(30);
+		    $font->size(14);
 		    $font->color('#217188');
 		    $font->align('left');
 		    $font->valign('center');
 		});
 		
-		$img->insert($foto, 'top-left', 165, 245);
+		$img->insert($foto, 'top-left', 90, 130);
 		
 		$img->resize($width, null, function ($constraint) {
 		    $constraint->aspectRatio();
