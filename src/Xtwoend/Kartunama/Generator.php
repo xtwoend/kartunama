@@ -43,7 +43,7 @@ class Generator {
 	 * @doc
 	 * 
 	 */
-	public function create(array $entities=array())
+	public function create(array $entities=array(), $width=650, $height=352)
 	{	
 		$name 		= isset($entities['name'])? $entities['name'] : 'Guest Name';
 		$jobtitle 	= isset($entities['jobtitle'])? $entities['jobtitle'] : 'Job Title';
@@ -66,7 +66,7 @@ class Generator {
 		// use callback to define details
 		$img->text($name, 400, 305, function($font) {
 		    $font->file(__DIR__ . '/fonts/Arimo-Bold.ttf');
-		    $font->size(64);
+		    $font->size(60);
 		    $font->color('#414141');
 		    $font->align('left');
 		    $font->valign('center');
@@ -89,11 +89,11 @@ class Generator {
 		});
 		
 		$img->insert($foto, 'top-left', 165, 245);
-		/*
-		$img->resize(600, null, function ($constraint) {
+		
+		$img->resize($width, null, function ($constraint) {
 		    $constraint->aspectRatio();
 		});
-		*/
+		
 		$img->save(\Config::get('kartunama::base_path').$final_image);
 
 		return \Config::get('kartunama::base_path').$final_image;
